@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Details</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='persnol.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Create Your Account</h1>
+    <p>Fill in your personal details below</p>
+
+    <div class="card">
+
+        <h2><i class="fa-solid fa-user"></i> Personal Details</h2>
+
+        <form action="/register" method="POST">
+
+            <div class="input-box">
+                <label>Fullname</label>
+                <input type="text" name="Fullname" placeholder="Enter your full name">
+            </div>
+
+            <div class="input-box">
+                <label>DOB</label>
+                <input type="date" name="DOB">
+            </div>
+
+            <div class="input-box">
+                <label>Gender</label>
+
+                <select name="Gender">
+                    
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+
+            </div>
+
+            <div class="input-box">
+                <label>Email</label>
+                <input type="email" name="Email" placeholder="Enter your email">
+            </div>
+
+            <div class="input-box">
+                <label>Mobile</label>
+                <input type="text" name="Mobile" placeholder="Enter your mobile number">
+            </div>
+
+            <div class="input-box">
+                <label>Address</label>
+
+                <textarea  name="Address" rows="4"  placeholder="Enter your address"></textarea>
+
+            </div>
+
+            <button type="submit" class="btn">Next</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
