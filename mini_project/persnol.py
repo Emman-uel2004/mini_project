@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request,redirect
+from flask import Blueprint, render_template, request,redirect
 import mysql.connector
 
-app = Flask(__name__)
+persnol_bp = Blueprint("persnol",__name__)
 
 # MySQL Connection
 db = mysql.connector.connect(
@@ -11,11 +11,11 @@ db = mysql.connector.connect(
     database="login_db"
 )
 
-@app.route("/")
+@persnol_bp.route("/persnol")
 def home():
     return render_template("persnol.html")
 
-@app.route("/register", methods=["POST"])
+@persnol_bp.route("/register", methods=["POST"])
 def register_user():
 
     Fullname= request.form["Fullname"]
@@ -40,13 +40,12 @@ def register_user():
 
     return redirect("/dashboard")
 
-@app.route("/dashboard")
+@persnol_bp.route("/dashboard")
 def dashboard():
     return "<h1>Registration Successful!</h1>"
 
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
 
     
