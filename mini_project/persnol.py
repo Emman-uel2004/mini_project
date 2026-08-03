@@ -15,25 +15,27 @@ db = mysql.connector.connect(
 def home():
     return render_template("persnol.html")
 
-@persnol_bp.route("/register", methods=["POST"])
+@persnol_bp.route("/persnol", methods=["POST"])
 def register_user():
 
-    Fullname= request.form["Fullname"]
-    DOB = request.form["DOB"]
-    Gender = request.form["Gender"]
-    Email = request.form["Email"]
-    Mobile = request.form["Mobile"]
-    Address = request.form["Address"]
+    name= request.form["name"]
+    initial   = request.form["initial"]
+    father_name = request.form["father_name"]
+    mother_name = request.form["mother_name"]
+    blood_group = request.form["blood_group"]
+    admission_type = request.form["admission_type"]
+    contact = request.form["contact"]
+    mother_tongue = request.form["mother_tongue"]
 
 
     cursor = db.cursor()
 
     sql = """
-    INSERT INTO persnol (Fullname, DOB, Gender, Email, Mobile, Address)
-    VALUES (%s, %s, %s, %s, %s, %s)
+    INSERT INTO persnol (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
     """
 
-    cursor.execute(sql, (Fullname, DOB, Gender, Email,Mobile, Address))
+    cursor.execute(sql, (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue))
 
     db.commit()
     cursor.close()
