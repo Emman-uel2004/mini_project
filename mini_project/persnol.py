@@ -26,16 +26,22 @@ def register_user():
     admission_type = request.form["admission_type"]
     contact = request.form["contact"]
     mother_tongue = request.form["mother_tongue"]
+    gender = request.form["gender"]
+    email = request.form["email"]
+    nationality = request.form["nationality"]
+    aadhar = request.form["aadhar"]
+    cast = request.form["cast"]
+    dob = request.form["dob"]
 
 
     cursor = db.cursor()
 
     sql = """
-    INSERT INTO persnol (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+    INSERT INTO persnol (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s,%s, %s, %s)
     """
 
-    cursor.execute(sql, (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue))
+    cursor.execute(sql, (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender))
 
     db.commit()
     cursor.close()
