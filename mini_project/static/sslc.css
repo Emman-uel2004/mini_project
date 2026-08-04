@@ -1,0 +1,106 @@
+/* Reset */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* Body */
+body{
+    background:#f4f7fc;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:30px;
+}
+
+/* Container */
+.container{
+    width:100%;
+    max-width:700px;
+    background:#ffffff;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Heading */
+.container h2{
+    text-align:center;
+    color:#0d47a1;
+    font-size:32px;
+    margin-bottom:30px;
+}
+
+/* Labels */
+label{
+    display:block;
+    font-size:16px;
+    font-weight:600;
+    color:#333;
+    margin-bottom:8px;
+    margin-top:18px;
+}
+
+/* Input & Select */
+input,
+select{
+    width:100%;
+    padding:13px 15px;
+    border:1px solid #cfd8dc;
+    border-radius:8px;
+    font-size:15px;
+    outline:none;
+    background:#fff;
+    transition:0.3s;
+}
+
+/* Focus */
+input:focus,
+select:focus{
+    border-color:#1565c0;
+    box-shadow:0 0 5px rgba(21,101,192,0.3);
+}
+
+/* Button */
+.btn{
+    width:100%;
+    margin-top:30px;
+    padding:14px;
+    background:#1565c0;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#0d47a1;
+}
+
+/* Responsive */
+@media(max-width:768px){
+
+.container{
+    padding:25px;
+}
+
+.container h2{
+    font-size:26px;
+}
+
+input,
+select{
+    font-size:14px;
+}
+
+.btn{
+    font-size:16px;
+}
+
+}

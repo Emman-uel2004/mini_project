@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SSLC Details</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='education.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>SSLC Details</h2>
+
+    <form action="/sslc" method="POST">
+
+        <label>Language I Mark</label>
+        <input type="number" name="language1_mark" placeholder="Enter Language I Mark" required>
+
+        <label>Language II Mark</label>
+        <input type="number" name="language2_mark" placeholder="Enter Language II Mark" required>
+
+        <label>Mathematics Mark</label>
+        <input type="number" name="mathematics_mark" placeholder="Enter Mathematics Mark" required>
+
+        <label>Science Mark</label>
+        <input type="number" name="science_mark" placeholder="Enter Science Mark" required>
+
+        <label>Social Science Mark</label>
+        <input type="number" name="social_science_mark" placeholder="Enter Social Science Mark" required>
+
+        <label>Total Mark</label>
+        <input type="number" name="total_mark" placeholder="Enter Total Mark" required>
+
+        <label>Medium of Instruction</label>
+        <select name="medium_of_instruction" required>
+            <option value="">Select Medium</option>
+            <option value="Tamil">Tamil</option>
+            <option value="English">English</option>
+        </select>
+
+        <label>Passing Year</label>
+        <select name="passing_year" required>
+            <option value="">Select Year</option>
+            <option>2026</option>
+            <option>2025</option>
+            <option>2024</option>
+            <option>2023</option>
+            <option>2022</option>
+            <option>2021</option>
+            <option>2020</option>
+            <option>2019</option>
+            <option>2018</option>
+        </select>
+
+        <label>Certificate Serial Number</label>
+        <input type="text" name="certificate_sl_no" placeholder="Enter Certificate Serial Number" required>
+
+        <button type="submit" class="btn">Next</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
