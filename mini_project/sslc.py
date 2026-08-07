@@ -25,17 +25,18 @@ def register_user():
     school_name = request.form["school_name"]
     passing_year = request.form["passing_year"]
     certificate_sl_no = request.form["certificate_sl_no"]
+    percentage = request.form["percentage"]
     
 
 
     cursor = db.cursor()
 
     sql = """
-    INSERT INTO sslc (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s,%s)
+    INSERT INTO sslc (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no,percentage)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s,%s,%s)
     """
 
-    cursor.execute(sql, (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no))
+    cursor.execute(sql, (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no,percentage))
 
     db.commit()
     cursor.close()

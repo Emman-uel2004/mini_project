@@ -10,7 +10,7 @@
 
     <h2>SSLC Details</h2>
 
-    <form action="/sslc" method="POST">
+    <form id="sslcForm" action="/sslc" method="POST">
 
         <label>Language I Mark</label>
         <input type="number" name="language1_mark" placeholder="Enter Language I Mark" required>
@@ -30,10 +30,10 @@
         <label>Subject Written (Out of)</label>
           <select name="subject_written">
             <option value="">-- Select --</option>
-            <option value="500">100</option>
-             <option value="600">200</option>
-             <option value="700">300</option>
-             <option value="800">400</option>
+            <option value="100">100</option>
+             <option value="200">200</option>
+             <option value="300">300</option>
+             <option value="400">400</option>
         </select>
 
         <label>Exam Written (Out of)</label>
@@ -47,6 +47,9 @@
 
         <label>Total Mark</label>
         <input type="number" name="total_mark" placeholder="Enter Total Mark" required>
+
+        <label>Percentage</label>
+       <input type="text" id="percentage" name="percentage" readonly>
 
         <label>Medium of Instruction</label>
         <select name="medium_of_instruction" required>
@@ -81,6 +84,7 @@
     </form>
 
 </div>
+<script src="{{ url_for('static', filename='sslc.js') }}"></script>
 
 </body>
 </html>
