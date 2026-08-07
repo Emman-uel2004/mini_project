@@ -46,11 +46,9 @@ def register_user():
     db.commit()
     cursor.close()
 
-    return redirect("/dashboard")
+    return redirect("/sslc")
 
-@persnol_bp.route("/dashboard")
-def dashboard():
-    return "<h1>Registration Successful!</h1>"
+
 
 
 

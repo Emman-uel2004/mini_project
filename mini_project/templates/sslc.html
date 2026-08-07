@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>SSLC Details</title>
-   <link rel="stylesheet" href="{{ url_for('static', filename='education.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='sslc.css') }}">
 </head>
 <body>
 
@@ -27,6 +27,24 @@
         <label>Social Science Mark</label>
         <input type="number" name="social_science_mark" placeholder="Enter Social Science Mark" required>
 
+        <label>Subject Written (Out of)</label>
+          <select name="subject_written">
+            <option value="">-- Select --</option>
+            <option value="500">100</option>
+             <option value="600">200</option>
+             <option value="700">300</option>
+             <option value="800">400</option>
+        </select>
+
+        <label>Exam Written (Out of)</label>
+          <select name="exam_written">
+            <option value="">-- Select --</option>
+            <option value="500">500</option>
+             <option value="600">600</option>
+             <option value="700">700</option>
+             <option value="800">800</option>
+        </select>
+
         <label>Total Mark</label>
         <input type="number" name="total_mark" placeholder="Enter Total Mark" required>
 
@@ -36,6 +54,10 @@
             <option value="Tamil">Tamil</option>
             <option value="English">English</option>
         </select>
+
+
+         <label>School Name</label>
+        <input type="text" name="school_name" placeholder="Enter School Name" required>
 
         <label>Passing Year</label>
         <select name="passing_year" required>

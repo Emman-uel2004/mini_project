@@ -13,30 +13,35 @@ def home():
 
 @sslc_bp.route("/sslc", methods=["POST"])
 def register_user():
-       name= request.form["name"]
-    initial   = request.form["initial"]
-    father_name = request.form["father_name"]
-    mother_name = request.form["mother_name"]
-    blood_group = request.form["blood_group"]
-    admission_type = request.form["admission_type"]
-    contact = request.form["contact"]
-    mother_tongue = request.form["mother_tongue"]
-    gender = request.form["gender"]
-    email = request.form["email"]
-    nationality = request.form["nationality"]
-    aadhar = request.form["aadhar"]
-    cast = request.form["cast"]
-    dob = request.form["dob"]
+    language1_mark= request.form["language1_mark"]
+    language2_mark   = request.form["language2_mark"]
+    mathematics_mark = request.form["mathematics_mark"]
+    science_mark = request.form["science_mark"]
+    social_science_mark = request.form["social_science_mark"]
+    exam_written = request.form["exam_written"]
+    total_mark = request.form["total_mark"]
+    medium_of_instruction = request.form["medium_of_instruction"]
+    subject_written = request.form["subject_written"]
+    school_name = request.form["school_name"]
+    passing_year = request.form["passing_year"]
+    certificate_sl_no = request.form["certificate_sl_no"]
+    
 
 
     cursor = db.cursor()
 
     sql = """
-    INSERT INTO persnol (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s,%s, %s, %s)
+    INSERT INTO sslc (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s,%s)
     """
 
-    cursor.execute(sql, (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender))
+    cursor.execute(sql, (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no))
 
     db.commit()
     cursor.close()
+
+    return redirect("/dashboard")
+
+@sslc_bp.route("/dashboard")
+def dashboard():
+    return "<h1>Registration Successful!</h1>"
