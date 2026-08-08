@@ -1,32 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>SSLC Details</title>
-   <link rel="stylesheet" href="{{ url_for('static', filename='sslc.css') }}">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>12th Mark Details</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='hsc.css') }}">
+
 </head>
+
 <body>
 
 <div class="container">
 
-    <h2>SSLC Details</h2>
+    <h2>12th Mark Details</h2>
 
-    <form id="sslcForm" action="/sslc" method="POST">
+    <form action="/hsc" method="POST">
 
-        <label>Language I Mark</label>
-        <input type="number" name="language1_mark" placeholder="Enter Language I Mark" required>
+     
 
-        <label>Language II Mark</label>
-        <input type="number" name="language2_mark" placeholder="Enter Language II Mark" required>
 
-        <label>Mathematics Mark</label>
-        <input type="number" name="mathematics_mark" placeholder="Enter Mathematics Mark" required>
+        <label>12th Group</label>
 
-        <label>Science Mark</label>
-        <input type="number" name="science_mark" placeholder="Enter Science Mark" required>
+        <select id="group" name="group" required>
 
-        <label>Social Science Mark</label>
-        <input type="number" name="social_science_mark" placeholder="Enter Social Science Mark" required>
+            <option value="">Select Group</option>
 
+            <option value="Computer Science"> Computer Science</option>
+
+            <option value="Biology"> Biology </option>
+
+            <option value="Commerce">Commerce </option>
+
+            <option value="Arts"> Arts</option>
+
+        </select>
+        
         <label>Subject Written (Out of)</label>
           <select name="subject_written">
             <option value="">-- Select --</option>
@@ -45,11 +58,38 @@
              <option value="800">800</option>
         </select>
 
+    
+
+        <div id="subjects">          
+          <h3>Subjects & Marks</h3>
+
+        </div>
+
+
         <label>Total Mark</label>
-        <input type="number" name="total_mark" placeholder="Enter Total Mark" required>
+
+        <input type="number" id="total" name="total" readonly>
+
 
         <label>Percentage</label>
-       <input type="text" id="percentage" name="percentage" readonly>
+
+        <input type="text" id="percentage" name="percentage" readonly>
+
+           <label>12th Board</label>
+
+        <select name="board" required>
+
+            <option value="">Select Board</option>
+
+            <option value="Tamil Nadu State Board">Tamil Nadu State Board</option>
+
+            <option value="CBSE">CBSE</option>
+
+            <option value="ICSE">ICSE</option>
+
+            <option value="Other">Other Board</option>
+
+        </select>
 
         <label>Medium of Instruction</label>
         <select name="medium_of_instruction" required>
@@ -76,22 +116,19 @@
             <option>2018</option>
         </select>
 
-               <label>10Th Board</label>
-        <select name="tenth_board" required>
-            <option value="">Select Board</option>
-            <option value="State Board">State Board</option>
-            <option value="CBSE">CBSE</option>
-        </select>
-
         <label>Certificate Serial Number</label>
         <input type="text" name="certificate_sl_no" placeholder="Enter Certificate Serial Number" required>
 
-        <button type="submit" class="btn">Next</button>
+
+        <button type="submit">Next</button>
 
     </form>
 
 </div>
-<script src="{{ url_for('static', filename='sslc.js') }}"></script>
+
+
+<script src="{{ url_for('static', filename='hsc.js') }}"></script>
 
 </body>
+
 </html>

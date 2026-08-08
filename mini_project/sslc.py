@@ -26,23 +26,21 @@ def register_user():
     passing_year = request.form["passing_year"]
     certificate_sl_no = request.form["certificate_sl_no"]
     percentage = request.form["percentage"]
+    tenth_board = request. form["tenth_board"]
     
 
 
     cursor = db.cursor()
 
     sql = """
-    INSERT INTO sslc (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no,percentage)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s,%s,%s)
+    INSERT INTO sslc (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no,percentage,tenth_board)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s,%s,%s,%s)
     """
 
-    cursor.execute(sql, (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no,percentage))
+    cursor.execute(sql, (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no,percentage,tenth_board))
 
     db.commit()
     cursor.close()
 
     return redirect("/dashboard")
 
-@sslc_bp.route("/dashboard")
-def dashboard():
-    return "<h1>Registration Successful!</h1>"
