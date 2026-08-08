@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, session
 import mysql.connector
 sslc_bp=Blueprint("sslc",__name__)
 db = mysql.connector.connect(
@@ -40,7 +40,19 @@ def register_user():
     cursor.execute(sql, (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no,percentage,tenth_board))
 
     db.commit()
+
+    # Login pannina user ID
+    user_id = session["user_id"]
+
+# Next step = HSC
+    cursor.execute(
+    "UPDATE user SET current_step = %s WHERE id = %s",
+    ("hsc", user_id)
+)
+
+    db.commit()
+
     cursor.close()
 
-    return redirect("/dashboard")
+    return redirect("/hsc")
 

@@ -1,23 +1,26 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, session
 import mysql.connector
 
-login_bp=Blueprint("login",__name__)
+login_bp = Blueprint("login", __name__)
 
 # MySQL Connection
 db = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="Root",   # unga MySQL password
+    password="Root",
     database="login_db"
 )
+
 
 @login_bp.route("/")
 def home():
     return render_template("login.html")
-    
+
+
 @login_bp.route("/register")
 def register():
     return render_template("register.html")
+
 
 @login_bp.route("/register", methods=["POST"])
 def register_user():
@@ -37,10 +40,10 @@ def register_user():
     cursor.execute(sql, (fullname, username, password, email))
 
     db.commit()
-
     cursor.close()
 
     return redirect("/")
+
 
 @login_bp.route("/login", methods=["POST"])
 def login():
@@ -48,18 +51,45 @@ def login():
     username = request.form["username"]
     password = request.form["password"]
 
-    cursor = db.cursor(buffered=True)
+    # dictionary=True is important
+    cursor = db.cursor(dictionary=True, buffered=True)
 
     query = "SELECT * FROM user WHERE username=%s AND password=%s"
 
     cursor.execute(query, (username, password))
 
-    user = cursor.fetchone() 
+    user = cursor.fetchone()
 
-    
+    cursor.close()
 
     if user:
-        return redirect("/persnol")
+
+        session["user_id"] = user["id"]
+
+        current_step = user["current_step"]
+
+        if current_step == "personal":
+            return redirect("/persnol")
+
+        elif current_step == "sslc":
+            return redirect("/sslc")
+
+        elif current_step == "hsc":
+            return redirect("/hsc")
+
+        elif current_step == "ug":
+            return redirect("/ug")
+
+        elif current_step == "pg":
+            return redirect("/pg")
+
+        elif current_step == "completed":
+            return redirect("/dashboard")
+        
+
+        else:
+            return redirect("/persnol")
+
     else:
         return "<h2>Invalid Username or Password</h2>"
 
