@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UG Degree Details</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='ug.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <span class="cap">🎓</span>
+        <h1>UG DEGREE DETAILS</h1>
+    </div>
+
+    <!-- Form -->
+    <form action="/ug" method="POST">
+
+        <div class="info">
+            <span>ℹ</span>
+            Please enter your Undergraduate (UG) degree information accurately.
+        </div>
+
+        <!-- Row 1 -->
+        <div class="row">
+
+            <div class="field">
+                <label>UG Degree <span>*</span></label>
+
+                <select name="ug_degree" required>
+                    <option value="">Select Degree</option>
+                    <option value="B.Sc Computer Science">B.Sc Computer Science</option>
+                    <option value="B.Com">B.Com</option>
+                    <option value="BCA">BCA</option>
+                    <option value="BBA">BBA</option>
+                    <option value="B.E">B.E</option>
+                    <option value="B.Tech">B.Tech</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>UG Percentage <span>*</span></label>
+
+                <div class="percentage">
+                    <input type="number" name="ug_percentage" step="0.01" min="0" max="100" placeholder="Enter percentage" required>
+
+                    <span>%</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Row 2 -->
+        <div class="row">
+
+            <div class="field">
+                <label>Consolidated Certificate Number <span>*</span></label>
+
+                <input type="text" name="consolidated_certificate" placeholder="Enter certificate number" required>
+            </div>
+
+            <div class="field">
+                <label>Provisional Certificate Number <span>*</span></label>
+
+                <input type="text" name="provisional_certificate" placeholder="Enter certificate number" required>
+            </div>
+
+        </div>
+
+        <!-- Class -->
+        <div class="field full">
+            <label>Class <span>*</span></label>
+
+            <select name="ug_class" required>
+                <option value="">Select Class</option>
+                <option value="First Class">First Class</option>
+                <option value="Second Class">Second Class</option>
+                <option value="Third Class">Third Class</option>
+            </select>
+        </div>
+
+        <!-- College -->
+        <div class="field full">
+            <label>UG College Name <span>*</span></label>
+
+            <input type="text" name="ug_college"placeholder="Enter college name"required>
+        </div>
+
+        <!-- University -->
+        <div class="field full">
+            <label>Name of the University <span>*</span></label>
+
+            <input type="text" name="university" placeholder="Enter university name" required>
+        </div>
+
+        <!-- Year -->
+        <div class="field full">
+            <label>Year of Passing <span>*</span></label>
+
+            <select name="year_of_passing" required>
+                <option value="">Select Year</option>
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+            </select>
+        </div>
+
+        <!-- Next Button -->
+        <div class="next-section">
+            <button type="submit" class="next-btn">→ &nbsp; Next</button>
+        </div>
+
+        <!-- Back -->
+        <div class="back-section">
+            <a href="/hsc" class="back-btn">← &nbsp; Back to Previous</a>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

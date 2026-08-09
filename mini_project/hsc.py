@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect,session
 import mysql.connector
 
 
@@ -124,16 +124,24 @@ def twelfth_mark():
 
         db.commit()
 
+        
+    # Login pannina user ID
+        user_id = session["user_id"]
+
+# Next step = HSC
+        cursor.execute(
+        "UPDATE user SET current_step = %s WHERE id = %s",
+         ("ug", user_id)
+          )
+
+        db.commit()
+
         cursor.close()
 
 
-        return redirect("/dashboard")
-
+        return redirect("/ug")
 
     return render_template("hsc.html")
 
 
-@hsc_bp.route("/dashboard")
-def dashboard():
-
-    return "Registration Successful!"
+    
