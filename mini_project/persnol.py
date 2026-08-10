@@ -17,6 +17,7 @@ def home():
 
 @persnol_bp.route("/persnol", methods=["POST"])
 def register_user():
+    user_id=session["user_id"]
 
     name= request.form["name"]
     initial   = request.form["initial"]
@@ -36,12 +37,24 @@ def register_user():
 
     cursor = db.cursor()
 
-    sql = """
-    INSERT INTO persnol (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s,%s, %s, %s)
-    """
+    cursor.execute( "SELECT id FROM persnol WHERE user_id = %s", (user_id,) )
+    
+    existing= cursor.fetchone()
 
-    cursor.execute(sql, (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender))
+    if existing:
+        sql="""UPDATE persnol set name=%s, initial=%s, father_name=%s, mother_name=%s, blood_group=%s, admission_type=%s, contact=%s, mother_tongue=%s, dob=%s, cast=%s, aadhar=%s, nationality=%s, email=%s, gender=%s where user_id=%s """
+
+        
+        cursor.execute(sql,( user_id,name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender))
+    else:
+        sql = """
+        INSERT INTO persnol (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender ,user_id)
+        VALUES (%s, %s, %s,%s, %s, %s, %s, %s, %s,%s, %s, %s,%s, %s, %s)
+        """
+
+    cursor.execute(sql, (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender ,user_id))
+
+
 
     db.commit()
 
