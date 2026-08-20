@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, session
 import mysql.connector
+import re
 
 login_bp = Blueprint("login", __name__)
 
@@ -28,6 +29,22 @@ def register_user():
     fullname = request.form["fullname"]
     username = request.form["username"]
     password = request.form["password"]
+
+    if not re.search(r"[A-Z]", password):
+        return "Password must contain at least one capital letter"
+
+    if not re.search(r"[a-z]", password):
+        return "Password must contain at least one small letter"
+
+    if not re.search(r"[0-9]", password):
+        return "Password must contain at least one number"
+
+    if not re.search(r"[@$!%*?&]", password):
+        return "Password must contain at least one special character"
+
+    if len(password) < 8:
+        return "Password must be at least 8 characters"
+
     email = request.form["email"]
 
     cursor = db.cursor()
