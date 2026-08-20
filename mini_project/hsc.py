@@ -18,12 +18,14 @@ def twelfth_mark():
 
     if request.method == "POST":
 
+        user_id=session["user_id"]
+
         board = request.form.get("board")
-        group = request.form.get("group")
+        group_name  = request.form.get("group_name ")
 
         tamil = request.form.get("tamil") or None
         english = request.form.get("english") or None
-        mathematics = request.form.get("mathematics") or None
+        mathematics  = request.form.get("mathematics ") or None
         physics = request.form.get("physics") or None
         chemistry = request.form.get("chemistry") or None
         computer_science = request.form.get("computer_science") or None
@@ -53,51 +55,26 @@ def twelfth_mark():
 
 
         cursor = db.cursor()
+        cursor.execute( "SELECT id FROM hsc WHERE user_id = %s", (user_id,) )
+        existing= cursor.fetchone()
+
+        if existing:
+            sql=""" update hsc set board=%s,group_name =%s,tamil=%s,english=%s,mathematics =%s,physics=%s,chemistry=%s,computer_science=%s,biology=%s,accountancy=%s,commerce=%s,economics=%s,computer_applications=%s,history=%s,political_science=%s,geography=%s,total=%s,percentage=%s,exam_written=%s,subject_written=%s,medium_of_instruction=%s,school_name=%s,passing_year=%s,certificate_sl_no=%s where user_id=%s"""
+            cursor.execute(sql,(board,group_name ,tamil,english,mathematics ,physics,chemistry,computer_science,biology,accountancy,commerce,economics,computer_applications,history,political_science,geography,total,percentage,exam_written,subject_written,medium_of_instruction,school_name,passing_year,certificate_sl_no, user_id))
 
 
-        sql = """
-        INSERT INTO hsc
+        else:
+            sql = """INSERT INTO hsc(board,group_name ,tamil,english,mathematics ,physics,chemistry,computer_science,biology,accountancy,commerce,economics,computer_applications,history,political_science,geography,total,percentage,exam_written,subject_written,medium_of_instruction,school_name,passing_year,certificate_sl_no, user_id)VALUES
         (
-            board,
-            group_name,
-            tamil,
-            english,
-            mathematics,
-            physics,
-            chemistry,
-            computer_science,
-            biology,
-            accountancy,
-            commerce,
-            economics,
-            computer_applications,
-            history,
-            political_science,
-            geography,
-            total,
-            percentage,
-            exam_written,
-            subject_written,
-            medium_of_instruction,
-            school_name,
-            passing_year,
-            certificate_sl_no
-        )
-        VALUES
-        (
-            %s, %s, %s, %s, %s, %s, %s, %s,
-            %s, %s, %s, %s, %s, %s, %s, %s,
-            %s, %s, %s,%s,%s,%s,%s,%s
+            %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s,%s,%s,%s,%s,%s, %s
         )
         """
-
-
-        values = (
+            values = (
             board,
-            group,
+            group_name ,
             tamil,
             english,
-            mathematics,
+            mathematics ,
             physics,
             chemistry,
             computer_science,
@@ -116,13 +93,14 @@ def twelfth_mark():
              medium_of_instruction,
             school_name,
             passing_year,
-            certificate_sl_no
+            certificate_sl_no,
+            user_id
         )
 
 
-        cursor.execute(sql, values)
+            cursor.execute(sql, values)
 
-        db.commit()
+            db.commit()
 
         
     # Login pannina user ID
