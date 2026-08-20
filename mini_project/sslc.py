@@ -13,6 +13,8 @@ def home():
 
 @sslc_bp.route("/sslc", methods=["POST"])
 def register_user():
+    user_id=session["user_id"]
+
     language1_mark= request.form["language1_mark"]
     language2_mark   = request.form["language2_mark"]
     mathematics_mark = request.form["mathematics_mark"]
@@ -26,23 +28,30 @@ def register_user():
     passing_year = request.form["passing_year"]
     certificate_sl_no = request.form["certificate_sl_no"]
     percentage = request.form["percentage"]
-    tenth_board = request. form["tenth_board"]
+    tenth_board = request.form["tenth_board"]
     
 
 
     cursor = db.cursor()
 
-    sql = """
-    INSERT INTO sslc (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no,percentage,tenth_board)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s,%s,%s,%s)
+    cursor.execute( "SELECT id FROM sslc WHERE user_id = %s", (user_id,) )
+
+    existing= cursor.fetchone()
+
+    if existing:
+        sql="""update sslc set language1_mark=%s,language2_mark=%s,mathematics_mark=%s,science_mark=%s,social_science_mark=%s,exam_written=%s,total_mark=%s,medium_of_instruction=%s,subject_written=%s,school_name=%s,passing_year=%s,certificate_sl_no=%s,percentage=%s,tenth_board=%s where user_id=%s"""
+        cursor.execute(sql, (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no,percentage,tenth_board,user_id))
+    else:
+        sql = """
+    INSERT INTO sslc (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no,percentage,tenth_board,user_id)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s,%s,%s,%s,%s)
     """
+        cursor.execute(sql, (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no,percentage,tenth_board,user_id))
 
-    cursor.execute(sql, (language1_mark,language2_mark,mathematics_mark,science_mark,social_science_mark,exam_written,total_mark,medium_of_instruction,subject_written,school_name,passing_year,certificate_sl_no,percentage,tenth_board))
-
-    db.commit()
+    
 
     # Login pannina user ID
-    user_id = session["user_id"]
+    
 
 # Next step = HSC
     cursor.execute(

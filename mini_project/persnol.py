@@ -45,14 +45,13 @@ def register_user():
         sql="""UPDATE persnol set name=%s, initial=%s, father_name=%s, mother_name=%s, blood_group=%s, admission_type=%s, contact=%s, mother_tongue=%s, dob=%s, cast=%s, aadhar=%s, nationality=%s, email=%s, gender=%s where user_id=%s """
 
         
-        cursor.execute(sql,( user_id,name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender))
+        cursor.execute(sql,( name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender,user_id))
     else:
         sql = """
         INSERT INTO persnol (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender ,user_id)
         VALUES (%s, %s, %s,%s, %s, %s, %s, %s, %s,%s, %s, %s,%s, %s, %s)
         """
-
-    cursor.execute(sql, (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender ,user_id))
+        cursor.execute(sql, (name, initial, father_name, mother_name, blood_group, admission_type, contact, mother_tongue, dob, cast, aadhar, nationality, email, gender ,user_id))
 
 
 
