@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, session
 import mysql.connector
 import re
+from werkzeug.security import generate_password_hash, check_password_hash
 
 login_bp = Blueprint("login", __name__)
 
@@ -44,6 +45,7 @@ def register_user():
 
     if len(password) < 8:
         return "Password must be at least 8 characters"
+    hashed_password = generate_password_hash(password)
 
     email = request.form["email"]
 
@@ -54,7 +56,7 @@ def register_user():
     VALUES (%s, %s, %s, %s)
     """
 
-    cursor.execute(sql, (fullname, username, password, email))
+    cursor.execute(sql, (fullname, username, hashed_password, email))
 
     db.commit()
     cursor.close()
@@ -71,15 +73,15 @@ def login():
     # dictionary=True is important
     cursor = db.cursor(dictionary=True, buffered=True)
 
-    query = "SELECT * FROM user WHERE username=%s AND password=%s"
+    query = "SELECT * FROM user WHERE username=%s "
 
-    cursor.execute(query, (username, password))
+    cursor.execute(query, (username,))
 
     user = cursor.fetchone()
 
     cursor.close()
 
-    if user:
+    if user and check_password_hash(user["password"], password):
 
         session["user_id"] = user["id"]
 
