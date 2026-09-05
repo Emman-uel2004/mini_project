@@ -13,76 +13,91 @@
 
     <h2>Personal Details</h2>
 
+   
     <form action="/persnol" method="POST">
 
         <label>Name</label>
-        <input type="text" name="name" placeholder="Enter your name">
+        <input type="text" name="name" value="{{ form.get('name', '') }}"  placeholder="Enter your name">
+        {% if errors.get('name') %} <span class="error">{{ errors['name'] }}</span> {% endif %}
 
         <label>Initial</label>
-        <input type="text" name="initial" placeholder="Enter initial">
+        <input type="text" name="initial" value="{{ form.get('initial', '') }}" placeholder="Enter initial">
+        {% if errors.get('initial') %} <span class="error">{{ errors['initial'] }}</span> {% endif %}
         
         <label>Date of Birth</label>
-        <input type="date" name="dob">
+        <input type="date" name="dob" value="{{ form.get('dob', '') }}">
+        {% if errors.get('dob') %} <span class="error">{{ errors['dob'] }}</span> {% endif %}
 
          <label>Gender</label>
-        <select name="gender">
+        <select name="gender" value="{{ form.get('gender', '') }}">
             <option value="">Select gender</option>
-            <option value="male">Male</option>
-            <option value="femal">Femal</option>
-            <option value="others">Others</option>
+            <option value="male"{% if form.get('gender') == 'male' %}selected{% endif %}>Male</option>
+            <option value="femal"{% if form.get('gender') == 'femal' %}selected{% endif %}>Femal</option>
+            <option value="others"{% if form.get('gender') == 'others' %}selected{% endif %}>Others</option>
 
         </select>
+        {% if errors.get('gender') %} <span class="error">{{ errors['gender'] }}</span> {% endif %}
 
         <label>Father Name</label>
-        <input type="text" name="father_name" placeholder="Enter father name">
+        <input type="text" name="father_name" value="{{ form.get('father_name', '') }}" placeholder="Enter father name">
+        {% if errors.get('father_name') %} <span class="error">{{ errors['father_name'] }}</span> {% endif %}
 
         <label>Mother Name</label>
-        <input type="text" name="mother_name" placeholder="Enter mother name">
+        <input type="text" name="mother_name" value="{{ form.get('mother_name', '') }}" placeholder="Enter mother name">
+        {% if errors.get('mother_name') %} <span class="error">{{ errors['mother_name'] }}</span> {% endif %}
 
         <label>Blood Group</label>
-        <select name="blood_group">
+        <select name="blood_group" value="{{ form.get('blood_group', '') }}">
             <option value="">Select Blood Group</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
+            <option value="A+"{% if form.get('blood_group') == 'A+' %}selected{% endif %}>A+</option>
+            <option value="A-"{% if form.get('blood_group') == 'A-' %}selected{% endif %}>A-</option>
+            <option value="B+"{% if form.get('blood_group') == 'B+' %}selected{% endif %}>B+</option>
+            <option value="B-"{% if form.get('blood_group') == 'B+' %}selected{% endif %}>B-</option>
+            <option value="O+"{% if form.get('blood_group') == 'O+' %}selected{% endif %}>O+</option>
+            <option value="O-"{% if form.get('blood_group') == 'O-' %}selected{% endif %}>O-</option>
         </select>
+        {% if errors.get('blood_group') %} <span class="error">{{ errors['blood_group'] }}</span> {% endif %}
 
         <label>Admission Type</label>
-        <select name="admission_type">
+        <select name="admission_type" value="{{ form.get('admission_type', '') }}">
             <option value="">Select Type</option>
-            <option value="Management">Management</option>
-            <option value="Government">Government</option>
+            <option value="Management"{% if form.get('admission_type') == 'Management' %}selected{% endif %}>Management</option>
+            <option value="Government"{% if form.get('admission_type') == 'Government' %}selected{% endif %}>Government</option>
         </select>
+        {% if errors.get('admission_type') %} <span class="error">{{ errors['admission_type'] }}</span> {% endif %}
 
         <label>Contact Number</label>
-        <input type="text" name="contact" placeholder="Enter mobile number">
+        <input type="text" name="contact" value="{{ form.get('contact', '') }}"  required placeholder="Enter mobile number">
+        {% if errors.get('contact') %} <span class="error">{{ errors['contact'] }}</span> {% endif %}
 
         <label>Email</label>
-        <input type="text" name="email" placeholder="Enter Email Id">
+        <input type="email" name="email" value="{{ form.get('email', '') }}" required placeholder="Enter Email Id">
+        {% if errors.get('email') %} <span class="error">{{ errors['email'] }}</span> {% endif %}
 
              <label>Nationality</label>
-        <select name="nationality">
+        <select name="nationality" value="{{ form.get('nationality', '') }}">
             <option value="">Select Nationality</option>
-            <option value="india">INDIA</option>
-            <option value="usa">USA</option>
-            <option value="canada">CANADA</option>
-            <option value="africa">AFRICA</option>
-            <option value="barginofao">BARGINOFASO</option>
-            <option value="nigeriya">NIGERIYA</option>
+            <option value="india"{% if form.get('nationality') == 'india' %}selected{% endif %}>INDIA</option>
+            <option value="usa"{% if form.get('nationality') == 'usa' %}selected{% endif %}>USA</option>
+            <option value="canada"{% if form.get('nationality') == 'canada' %}selected{% endif %}>CANADA</option>
+            <option value="africa"{% if form.get('nationality') == 'africa' %}selected{% endif %}>AFRICA</option>
+            <option value="barginofao"{% if form.get('nationality') == 'barginofao' %}selected{% endif %}>BARGINOFASO</option>
+            <option value="nigeriya"{% if form.get('nationality') == 'nigeriya' %}selected{% endif %}>NIGERIYA</option>
         </select> 
+        {% if errors.get('nationality') %} <span class="error">{{ errors['nationality'] }}</span> {% endif %}
 
         <label>Aadhar Number</label>
-        <input type="number" name="aadhar" placeholder="Enter Aadhar Number">
+        <input type="number" name="aadhar"  value="{{ form.get('aadhar', '') }}" placeholder="Enter Aadhar Number">
+        {% if errors.get('aadhar') %} <span class="error">{{ errors['aadhar'] }}</span> {% endif %}
 
         <label>Cast</label>
-        <input type="text" name="cast" placeholder="Enter Cast">
+        <input type="text" name="cast" value="{{ form.get('cast', '') }}" placeholder="Enter Cast">
+        {% if errors.get('cast') %} <span class="error">{{ errors['cast'] }}</span> {% endif %}
 
 
         <label>Mother Tongue</label>
-        <input type="text" name="mother_tongue" placeholder="Enter mother tongue">
+        <input type="text" name="mother_tongue" value="{{ form.get('mother_tongue', '') }}" placeholder="Enter mother tongue">
+        {% if errors.get('mother_tongue') %} <span class="error">{{ errors['mother_tongue'] }}</span> {% endif %}
 
 
         <button type="submit" class="btn">Next</button>

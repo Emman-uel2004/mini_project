@@ -13,19 +13,24 @@
     <form id="sslcForm" action="/sslc" method="POST">
 
         <label>Language I Mark</label>
-        <input type="number" name="language1_mark" placeholder="Enter Language I Mark" required>
+        <input type="number" name="language1_mark" value="{{ form.get('language1_mark', '') }}" placeholder="Enter Language I Mark" required>
+        {% if errors.get('language1_mark') %} <span class="error">{{ errors['language1_mark'] }}</span> {% endif %}
 
         <label>Language II Mark</label>
-        <input type="number" name="language2_mark" placeholder="Enter Language II Mark" required>
+        <input type="number" name="language2_mark" value="{{ form.get('language2_mark', '') }}" placeholder="Enter Language II Mark" required>
+        {% if errors.get('language2_mark') %} <span class="error">{{ errors['language2_mark'] }}</span> {% endif %}
 
         <label>Mathematics Mark</label>
-        <input type="number" name="mathematics_mark" placeholder="Enter Mathematics Mark" required>
+        <input type="number" name="mathematics_mark" value="{{ form.get('mathematics_mark', '') }}" placeholder="Enter Mathematics Mark" required>
+        {% if errors.get('mathematics_mark') %} <span class="error">{{ errors['mathematics_mark'] }}</span> {% endif %}
 
         <label>Science Mark</label>
-        <input type="number" name="science_mark" placeholder="Enter Science Mark" required>
+        <input type="number" name="science_mark" value="{{ form.get('science_mark', '') }}" placeholder="Enter Science Mark" required>
+        {% if errors.get('science_mark') %} <span class="error">{{ errors['science_mark'] }}</span> {% endif %}
 
         <label>Social Science Mark</label>
-        <input type="number" name="social_science_mark" placeholder="Enter Social Science Mark" required>
+        <input type="number" name="social_science_mark" value="{{ form.get('social_science_mark', '') }}"  placeholder="Enter Social Science Mark" required>
+        {% if errors.get('social_science_mark') %} <span class="error">{{ errors['social_science_mark'] }}</span> {% endif %}
 
         <label>Subject Written (Out of)</label>
           <select name="subject_written">

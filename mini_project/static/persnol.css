@@ -26,6 +26,7 @@ body{
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
+
 /* Heading */
 .container h2{
     text-align: center;
@@ -60,6 +61,10 @@ input:focus,
 select:focus{
     border-color: #0077cc;
     box-shadow: 0 0 8px rgba(0,119,204,0.3);
+}
+.error {
+    color: rgb(240, 88, 88);
+    font-size: 14px;
 }
 
 /* Button */
