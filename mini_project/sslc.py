@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, session
 import mysql.connector
+import re
 sslc_bp=Blueprint("sslc",__name__)
 db = mysql.connector.connect(
     host="localhost",
@@ -9,26 +10,76 @@ db = mysql.connector.connect(
 )
 @sslc_bp.route("/sslc")
 def home():
-    return render_template("sslc.html")
+    user_id=session["user_id"]
+
+    cursor = db.cursor(dictionary=True)
+
+    if request.method == "GET": cursor.execute("SELECT * FROM sslc WHERE user_id=%s",(session["user_id"],))
+    data = cursor.fetchone()
+      
+    
+    return render_template("sslc.html",form=data or {},errors = {})
 
 @sslc_bp.route("/sslc", methods=["POST"])
 def register_user():
     user_id=session["user_id"]
+   
+    errors = {}
 
     language1_mark= request.form["language1_mark"]
+    if not language1_mark.strip():
+        errors["language1_mark"] = "language1_mark cannot be empty"
+
     language2_mark   = request.form["language2_mark"]
+    if not language2_mark.strip():
+        errors["language2_mark"] = "language2_mark cannot be empty"
+
     mathematics_mark = request.form["mathematics_mark"]
+    if not mathematics_mark.strip():
+        errors["mathematics_mark"] = "mathematics_mark cannot be empty"
+
     science_mark = request.form["science_mark"]
+    if not science_mark.strip():
+        errors["science_mark"] = "science_mark cannot be empty"
+
     social_science_mark = request.form["social_science_mark"]
+    if not social_science_mark.strip():
+        errors["social_science_mark"] = "social_science_mark cannot be empty"
+
     exam_written = request.form["exam_written"]
+    if not exam_written.strip():
+        errors["exam_written"] = "exam_written cannot be empty"
+
     total_mark = request.form["total_mark"]
+    if not total_mark.strip():
+        errors["total_mark"] = "total_mark cannot be empty"
     medium_of_instruction = request.form["medium_of_instruction"]
+    if not medium_of_instruction.strip():
+        errors["medium_of_instruction"] = "medium_of_instruction cannot be empty"
+
     subject_written = request.form["subject_written"]
+    if not subject_written.strip():
+        errors["subject_written"] = "subject_written cannot be empty"
+        
     school_name = request.form["school_name"]
+    if not school_name.strip():
+        errors["school_name"] = "school_name cannot be empty"
+        
     passing_year = request.form["passing_year"]
+    if not passing_year.strip():
+        errors["passing_year"] = "passing_year cannot be empty"
+        
     certificate_sl_no = request.form["certificate_sl_no"]
+    if not certificate_sl_no.strip():
+        errors["certificate_sl_no"] = "certificate_sl_no cannot be empty"
+        
     percentage = request.form["percentage"]
+    if not percentage.strip():
+        errors["percentage"] = "percentage cannot be empty"
+
     tenth_board = request.form["tenth_board"]
+    if not tenth_board.strip():
+        errors["tenth_board"] = "tenth_board cannot be empty"
     
 
 

@@ -33,63 +33,62 @@
         {% if errors.get('social_science_mark') %} <span class="error">{{ errors['social_science_mark'] }}</span> {% endif %}
 
         <label>Subject Written (Out of)</label>
-          <select name="subject_written">
+          <select name="subject_written" >
             <option value="">-- Select --</option>
-            <option value="100">100</option>
-             <option value="200">200</option>
-             <option value="300">300</option>
-             <option value="400">400</option>
+            <option value="100" {% if form.get('subject_written')|string == '100' %}selected{% endif %}>100</option>
+           <option value="200" {% if form.get('subject_written')|string == '200' %}selected{% endif %}>200</option>
+          <option value="300" {% if form.get('subject_written')|string == '300' %}selected{% endif %}>300</option>
+          <option value="400" {% if form.get('subject_written')|string == '400' %}selected{% endif %}>400</option>
         </select>
-
+         {% if errors.get('subject_written') %}<span class="error">{{ errors['subject_written'] }}</span>{% endif %}
         <label>Exam Written (Out of)</label>
-          <select name="exam_written">
+          <select name="exam_written" >
             <option value="">-- Select --</option>
-            <option value="500">500</option>
-             <option value="600">600</option>
-             <option value="700">700</option>
-             <option value="800">800</option>
+            <option value="500"{% if form.get('exam_written')|string == '500' %}selected{% endif %}>500</option>
+             <option value="600"{% if form.get('exam_written')|string == '600' %}selected{% endif %}>600</option>
+             <option value="700"{% if form.get('exam_written')|string == '700' %}selected{% endif %}>700</option>
+             <option value="800"{% if form.get('exam_written')|string == '800' %}selected{% endif %}>800</option>
         </select>
-
+        {% if errors.get('exam_written') %} <span class="error">{{ errors['exam_written'] }}</span> {% endif %}
         <label>Total Mark</label>
-        <input type="number" name="total_mark" placeholder="Enter Total Mark" required>
+        <input type="number" name="total_mark" value="{{ form.get('total_mark', '') }}" placeholder="Enter Total Mark" required>
+        {% if errors.get('total_mark') %} <span class="error">{{ errors['total_mark'] }}</span> {% endif %}
 
         <label>Percentage</label>
-       <input type="text" id="percentage" name="percentage" readonly>
+       <input type="text" id="percentage" value="{{ form.get('percentage', '') }}" name="percentage"  readonly>
+       {% if errors.get('percentage') %} <span class="error">{{ errors['percentage'] }}</span> {% endif %}
 
         <label>Medium of Instruction</label>
-        <select name="medium_of_instruction" required>
+        <select name="medium_of_instruction"  required>
             <option value="">Select Medium</option>
-            <option value="Tamil">Tamil</option>
-            <option value="English">English</option>
+            <option value="Tamil"{% if form.get('medium_of_instruction') == 'Tamil' %}selected{% endif %}>Tamil</option>
+            <option value="English"{% if form.get('medium_of_instruction') == 'English' %}selected{% endif %}>English</option>
         </select>
+         {% if errors.get('medium_of_instruction') %} <span class="error">{{ errors['medium_of_instruction'] }}</span> {% endif %}
+
 
 
          <label>School Name</label>
-        <input type="text" name="school_name" placeholder="Enter School Name" required>
+        <input type="text" name="school_name" value="{{ form.get('school_name', '') }}" placeholder="Enter School Name" required>
+        {% if errors.get('school_name') %} <span class="error">{{ errors['school_name'] }}</span> {% endif %}
 
         <label>Passing Year</label>
-        <select name="passing_year" required>
-            <option value="">Select Year</option>
-            <option>2026</option>
-            <option>2025</option>
-            <option>2024</option>
-            <option>2023</option>
-            <option>2022</option>
-            <option>2021</option>
-            <option>2020</option>
-            <option>2019</option>
-            <option>2018</option>
-        </select>
+        <input type="number" name="passing_year"  value="{{ form.get('passing_year', '') }}" placeholder="Enter Passing Year" required>
+        {% if errors.get('passing_year') %} <span class="error">{{ errors['passing_year'] }}</span> {% endif %}
+
+        
 
                <label>10Th Board</label>
         <select name="tenth_board" required>
             <option value="">Select Board</option>
-            <option value="State Board">State Board</option>
-            <option value="CBSE">CBSE</option>
+            <option value="State_Board" {% if form.get('tenth_board') == 'State_Board' %}selected{% endif %}>State Board</option>
+            <option value="CBSE"  {% if form.get('tenth_board') == 'CBSE' %}selected{% endif %}>CBSE</option>
         </select>
+        {% if errors.get('tenth_board') %} <span class="error">{{ errors['tenth_board'] }}</span> {% endif %}
 
         <label>Certificate Serial Number</label>
-        <input type="text" name="certificate_sl_no" placeholder="Enter Certificate Serial Number" required>
+        <input type="text" name="certificate_sl_no" value="{{ form.get('certificate_sl_no', '') }}" placeholder="Enter Certificate Serial Number" required>
+        {% if errors.get('certificate_sl_no') %} <span class="error">{{ errors['certificate_sl_no'] }}</span> {% endif %}
 
         <button type="submit" class="btn">Next</button>
         <button type="button" class="btn"onclick="window.location.href='{{ url_for('persnol.home') }}'">Previous</button>
