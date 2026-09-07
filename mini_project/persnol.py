@@ -14,7 +14,7 @@ db = mysql.connector.connect(
 
 @persnol_bp.route("/persnol")
 def home():
-    user_id=session["user_id"]
+    user_id=session.get("user_id")
 
     cursor = db.cursor(dictionary=True)
 
@@ -25,6 +25,9 @@ def home():
 
 @persnol_bp.route("/persnol", methods=["POST"])
 def register_user():
+    user_id=session["user_id"]
+    if not user_id:
+        return redirect("/login")
     
     errors = {}
 

@@ -51,7 +51,7 @@
         </select>
         {% if errors.get('exam_written') %} <span class="error">{{ errors['exam_written'] }}</span> {% endif %}
         <label>Total Mark</label>
-        <input type="number" name="total_mark" value="{{ form.get('total_mark', '') }}" placeholder="Enter Total Mark" required>
+        <input type="number" name="total_mark" value="{{ form.get('total_mark', '') }}" placeholder="Total Mark" readonly>
         {% if errors.get('total_mark') %} <span class="error">{{ errors['total_mark'] }}</span> {% endif %}
 
         <label>Percentage</label>

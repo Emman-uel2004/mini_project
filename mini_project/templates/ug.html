@@ -35,20 +35,22 @@
 
                 <select name="ug_degree" required>
                     <option value="">Select Degree</option>
-                    <option value="B.Sc Computer Science">B.Sc Computer Science</option>
-                    <option value="B.Com">B.Com</option>
-                    <option value="BCA">BCA</option>
-                    <option value="BBA">BBA</option>
-                    <option value="B.E">B.E</option>
-                    <option value="B.Tech">B.Tech</option>
+                       <option value="B.Sc Computer Science"{% if form.get('ug_degree') == 'B.Sc Computer Science' %}selected{% endif %}>B.Sc Computer Science</option>
+                <option value="BCom."{% if form.get('ug_degree') == 'BCom.' %}selected{% endif %}>B.Com</option>
+               <option value="BCA"{% if form.get('ug_degree') == 'BCA' %}selected{% endif %}>BCA</option>
+               <option value="BBA"{% if form.get('ug_degree') == 'BBA' %}selected{% endif %}>BBA</option>
+              <option value="B.E"{% if form.get('ug_degree') == 'B.E' %}selected{% endif %}>B.E</option>
+              <option value="B.Tech"{% if form.get('ug_degree') == 'B.Tech' %}selected{% endif %}>B.Tech</option>
                 </select>
+                {% if errors.get('ug_degree') %} <span class="error">{{ errors['ug_degree'] }}</span> {% endif %}
             </div>
 
             <div class="field">
                 <label>UG Percentage <span>*</span></label>
 
                 <div class="percentage">
-                    <input type="number" name="ug_percentage" step="0.01" min="0" max="100" placeholder="Enter percentage" required>
+                    <input type="number" name="ug_percentage" value="{{ form.get('ug_percentage', '') }}" step="0.01" min="0" max="100" placeholder="Enter percentage" required>
+                    {% if errors.get('ug_percentage') %} <span class="error">{{ errors['ug_percentage'] }}</span> {% endif %}
 
                     <span>%</span>
                 </div>
@@ -62,13 +64,15 @@
             <div class="field">
                 <label>Consolidated Certificate Number <span>*</span></label>
 
-                <input type="text" name="consolidated_certificate" placeholder="Enter certificate number" required>
+                <input type="text" name="consolidated_certificate" value="{{ form.get('consolidated_certificate', '') }}" placeholder="Enter certificate number" required>
+                {% if errors.get('consolidated_certificate') %} <span class="error">{{ errors['consolidated_certificate'] }}</span> {% endif %}
             </div>
 
             <div class="field">
                 <label>Provisional Certificate Number <span>*</span></label>
 
-                <input type="text" name="provisional_certificate" placeholder="Enter certificate number" required>
+                <input type="text" name="provisional_certificate" value="{{ form.get('provisional_certificate', '') }}" placeholder="Enter certificate number" required>
+                {% if errors.get('provisional_certificate') %} <span class="error">{{ errors['provisional_certificate'] }}</span> {% endif %}
             </div>
 
         </div>
@@ -79,9 +83,9 @@
 
             <select name="ug_class" required>
                 <option value="">Select Class</option>
-                <option value="First Class">First Class</option>
-                <option value="Second Class">Second Class</option>
-                <option value="Third Class">Third Class</option>
+        <option value="First Class"{% if form.get('class') == 'First Class' %}selected{% endif %}>First Class</option>
+     <option value="Second Class"{% if form.get('class') == 'Second Class' %}selected{% endif %}>Second Class</option>
+   <option value="Third Class"{% if form.get('class') == 'Third Class' %}selected{% endif %}>Third Class</option>
             </select>
         </div>
 
@@ -89,30 +93,24 @@
         <div class="field full">
             <label>UG College Name <span>*</span></label>
 
-            <input type="text" name="ug_college"placeholder="Enter college name"required>
+            <input type="text" name="ug_college" value="{{ form.get('ug_college', '') }}" placeholder="Enter college name"required>
+            {% if errors.get('ug_college') %} <span class="error">{{ errors['ug_college'] }}</span> {% endif %}
         </div>
 
         <!-- University -->
         <div class="field full">
             <label>Name of the University <span>*</span></label>
 
-            <input type="text" name="university" placeholder="Enter university name" required>
+            <input type="text" name="university" value="{{ form.get('university', '') }}" placeholder="Enter university name" required>
+            {% if errors.get('university') %} <span class="error">{{ errors['university'] }}</span> {% endif %}
         </div>
 
         <!-- Year -->
         <div class="field full">
             <label>Year of Passing <span>*</span></label>
 
-            <select name="year_of_passing" required>
-                <option value="">Select Year</option>
-                <option value="2026">2026</option>
-                <option value="2025">2025</option>
-                <option value="2024">2024</option>
-                <option value="2023">2023</option>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
-            </select>
+         <input type="text" name="year_of_passing" value="{{ form.get('year_of_passing', '') }}" placeholder="Enter year of passing" required>
+            {% if errors.get('year_of_passing') %} <span class="error">{{ errors['year_of_passing'] }}</span> {% endif %}
         </div>
 
         <!-- Next Button -->

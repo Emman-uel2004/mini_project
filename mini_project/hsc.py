@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect,session
 import mysql.connector
+import re
 
 
 hsc_bp = Blueprint("hsc", __name__)
@@ -11,21 +12,33 @@ db = mysql.connector.connect(
     password="Root",
     database="login_db"
 )
+@hsc_bp.route("/hsc",methods=["GET"])
+def home():
+    user_id=session.get("user_id")
+    if not user_id:
+        return redirect("/login")
+    cursor = db.cursor(dictionary=True)
 
+    cursor.execute("SELECT * FROM hsc WHERE user_id=%s",(user_id,))
+
+    data = cursor.fetchone()
+    cursor.close()
+    
+    return render_template("hsc.html",form=data or {},errors = {})
 
 @hsc_bp.route("/hsc", methods=["GET", "POST"])
 def twelfth_mark():
-
+    errors = {}
     if request.method == "POST":
 
         user_id=session["user_id"]
 
         board = request.form.get("board")
-        group_name  = request.form.get("group_name ")
+        group_name  = request.form.get("group_name")
 
         tamil = request.form.get("tamil") or None
         english = request.form.get("english") or None
-        mathematics  = request.form.get("mathematics ") or None
+        mathematics  = request.form.get("mathematics") or None
         physics = request.form.get("physics") or None
         chemistry = request.form.get("chemistry") or None
         computer_science = request.form.get("computer_science") or None
@@ -51,6 +64,10 @@ def twelfth_mark():
         school_name =request.form["school_name"]
         passing_year= request.form["passing_year"]
         certificate_sl_no= request.form["certificate_sl_no"]
+
+
+        if errors:
+            return render_template("hsc.html", errors=errors, form=request.form)
 
 
 

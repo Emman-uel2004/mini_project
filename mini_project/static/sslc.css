@@ -44,6 +44,11 @@ label{
     margin-top:18px;
 }
 
+.error {
+    color: rgb(240, 88, 88);
+    font-size: 14px;
+}
+
 /* Input & Select */
 input,
 select{

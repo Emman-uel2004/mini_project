@@ -9,12 +9,25 @@ db = mysql.connector.connect(
 )
 @ug_bp.route("/ug")
 def home():
-    return render_template("ug.html")
+    user_id=session.get("user_id")
+    if not user_id:
+        return redirect("/login")
+    cursor = db.cursor(dictionary=True)
+
+    cursor.execute("SELECT * FROM ug WHERE user_id=%s",(user_id,))
+
+    data = cursor.fetchone()
+    cursor.close()
+    
+   
+    return render_template("ug.html",form=data or {},errors = {})
+
 
 @ug_bp.route("/ug", methods=["POST"])
 def register_user():
     user_id=session["user_id"]
 
+    errors = {}
 
     ug_degree =request.form["ug_degree"]
     ug_percentage =request.form["ug_percentage"]
@@ -24,6 +37,9 @@ def register_user():
     ug_college=request.form["ug_college"]
     university=request.form["university"]
     year_of_passing=request.form["year_of_passing"]
+
+    if errors:
+            return render_template("ug.html", errors=errors, form=request.form)
 
 
     cursor = db.cursor()
