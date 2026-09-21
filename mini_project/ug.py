@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect,session
 import mysql.connector
+import re
 ug_bp=Blueprint("ug",__name__)
 db = mysql.connector.connect(
     host="localhost",
@@ -62,13 +63,13 @@ def register_user():
     db.commit()
 
     cursor.close()
-    return redirect("/dashboard")
+    return render_template("dash.html")
 
 
 
 
 
-@ug_bp.route("/dashboard")
+'''@ug_bp.route("/dashboard")
 def dashboard():
 
-    return "Registration Successful!"
+    return "Registration Successful!"'''

@@ -1,0 +1,123 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+    min-height: 100vh;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 85%;
+    max-width: 900px;
+    text-align: center;
+}
+
+h1 {
+    color: #28a745;
+    margin-bottom: 10px;
+}
+
+.message {
+    color: #666;
+    margin-bottom: 40px;
+}
+
+
+/* Cards */
+
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+.card {
+    background: white;
+
+    padding: 35px 20px;
+
+    border-radius: 15px;
+
+    text-decoration: none;
+
+    color: #222;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+}
+
+.card h2 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #777;
+}
+
+
+/* Logout Button */
+
+.logout-btn {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 12px 30px;
+
+    background: #dc3545;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    text-align: center;
+}
+
+.logout-btn:hover {
+    background: #c82333;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+}

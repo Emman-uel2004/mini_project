@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Registration Successful</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='dash.css') }}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <h1>Registration Successful!</h1>
+
+        <p class="message">
+            Your student details have been successfully registered.
+        </p>
+
+
+        <!-- Cards -->
+        <div class="cards">
+
+            <!-- Personal -->
+            <a href="{{ url_for('persnol.home') }}"
+               class="card">
+
+                <h2>Personal</h2>
+
+                <p>
+                    Personal Details
+                </p>
+
+            </a>
+
+
+            <!-- SSLC -->
+            <a href="{{ url_for('sslc.home') }}"
+               class="card">
+
+                <h2>SSLC</h2>
+
+                <p>
+                    SSLC Details
+                </p>
+
+            </a>
+
+
+            <!-- HSC -->
+            <a href="{{ url_for('hsc.home') }}"
+               class="card">
+
+                <h2>HSC</h2>
+
+                <p>
+                    HSC Details
+                </p>
+
+            </a>
+
+
+            <!-- UG -->
+            <a href="{{ url_for('ug.home') }}"
+               class="card">
+
+                <h2>UG</h2>
+
+                <p>
+                    UG Details
+                </p>
+
+            </a>
+
+        </div>
+
+
+        <!-- Logout Button -->
+        <div style="text-align: center;">
+
+            <a href="{{ url_for('login.logout') }}"
+               class="logout-btn">
+
+                Logout
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

@@ -113,3 +113,7 @@ def login():
         return "<h2>Invalid Username or Password</h2>"
 
 
+@login_bp.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
