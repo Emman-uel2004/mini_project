@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Plotly Library -->
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <!-- Admin CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header>
+        <h1>Student Data Pipeline</h1>
+        <div>
+            <span>
+                👤 {{ session["admin_username"] }}
+            </span>
+            <a href="/admin/logout" class="logout">
+                Logout
+            </a>
+        </div>
+    </header>
+    <!-- =========================
+         MAIN
+    ========================== -->
+    <main>
+        <h1>Admin Dashboard</h1>
+        <p class="welcome">
+            Welcome, {{ session["admin_username"] }}!
+            Here is the overview of student data.
+        </p>
+        <!-- =========================
+             DASHBOARD CARDS
+        ========================== -->
+        <div class="cards">
+            <!-- Total Students -->
+            <div class="card">
+                <h3>Total Students</h3>
+                <p>
+                    {{ total_students }}
+                </p>
+            </div>
+            <!-- SSLC Average -->
+            <div class="card">
+                <h3>SSLC Average</h3>
+                <p>
+                    {{ sslc_average }}%
+                </p>
+            </div>
+            <!-- HSC Average -->
+            <div class="card">
+                <h3>HSC Average</h3>
+                <p>
+                    {{ hsc_average }}%
+                </p>
+            </div>
+            <!-- UG Average -->
+            <div class="card">
+                <h3>UG Average</h3>
+                <p>
+                    {{ ug_average }}%
+                </p>
+            </div>
+        </div>
+        <!-- =========================
+             CHART ROW 1
+        ========================== -->
+        <div class="chart-row">
+            <!-- Gender Chart -->
+            <div class="chart-box">
+                <h2>Gender Distribution</h2>
+                <div id="genderChart"></div>
+            </div>
+            <!-- Admission Chart -->
+            <div class="chart-box">
+                <h2>Admission Type</h2>
+                <div id="admissionChart"></div>
+            </div>
+        </div>
+        <!-- =========================
+             CHART ROW 2
+        ========================== -->
+        <div class="chart-row">
+            <!-- Academic Average -->
+
+            <div class="chart-box">
+                <h2>Academic Average</h2>
+                <div id="averageChart"></div>
+            </div>
+
+
+            <!-- Passing Year -->
+
+            <div class="chart-box">
+                <h2>SSLC Passing Year</h2>
+                <div id="passingYearChart"></div>
+            </div>
+        </div>
+    </main>
+    <!-- =========================
+         SEND FLASK DATA TO JAVASCRIPT
+    ========================== -->
+    <script>
+        window.dashboardData = {
+            gender: {{ gender_data | tojson }},
+            admission: {{ admission_data | tojson }},
+            sslc_average: {{ sslc_average | tojson }},
+            hsc_average: {{ hsc_average | tojson }},
+            ug_average: {{ ug_average | tojson }},
+            passing_year: {{ passing_year_data | tojson }}
+        };
+    </script>
+    <!-- =========================
+         ADMIN JAVASCRIPT
+    ========================== -->
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+
+</html>

@@ -4,6 +4,7 @@ from persnol import persnol_bp
 from sslc import sslc_bp
 from hsc import hsc_bp
 from ug import ug_bp
+from admin import admin_bp
 
 app= Flask(__name__)
 
@@ -14,6 +15,7 @@ app.register_blueprint(persnol_bp)
 app.register_blueprint(sslc_bp)
 app.register_blueprint(hsc_bp)
 app.register_blueprint(ug_bp)
+app.register_blueprint(admin_bp)
 
 if __name__ == "__main__":
     app.run(debug=True)
